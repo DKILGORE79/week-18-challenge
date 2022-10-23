@@ -1,23 +1,31 @@
 const router = require('express').Router();
+
 const {
-  getStudents,
-  getSingleStudent,
-  createStudent,
-  deleteStudent,
-  addAssignment,
-  removeAssignment,
-} = require('../../controllers/studentController');
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+  addToFriendList,
+  removefromFriendList
+} = require('../../controllers/user-controller');
 
-// /api/students
-router.route('/').get(getStudents).post(createStudent);
+// Set up GET all and POST at /api/users. Provide name of controller as callback
+router
+  .route('/')
+  .get(getAllUsers)
+  .post(createUser);
 
-// /api/students/:studentId
-router.route('/:studentId').get(getSingleStudent).delete(deleteStudent);
+// Set up GET one, PUT, and DELETE at /api/users/<id>
+router
+  .route('/:id').get(getUserById).put(updateUser).delete(deleteUser);
 
-// /api/students/:studentId/assignments
-router.route('/:studentId/assignments').post(addAssignment);
+router
+  .route('/:userId/friends/:friendId').post(addToFriendList);
 
-// /api/students/:studentId/assignments/:assignmentId
-router.route('/:studentId/assignments/:assignmentId').delete(removeAssignment);
+
+router
+  .route('/:userId/friends/:friendId').delete(removefromFriendList);
 
 module.exports = router;
+
