@@ -1,52 +1,38 @@
-const { Schema, model } = require('mongoose');
-const userSchema = new Schema(
+const { Schema, model, Types } = require('mongoose');
+const moment = require('moment');
+const reactionSchema = require('./Reaction');
+
+const ThoughtSchema = new Schema(
   {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please enter a valid email address.",
-      ],
-    },
-    thoughts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Thought',
-      },
-    ],
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
+  thoughtText: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 280
   },
-  {
-    toJSON: {
-      virtuals: true,
-    },
-    id: false,
-  }
-);
-userSchema.virtual('friendCount').get(function () {
-  return this.friends.length;
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+  },
+  username: {
+    type: String,
+    required: true
+  },
+
+  reactions: [reactionSchema]
+}, {
+  toJSON: {
+    virtuals: true,
+    getters: true
+  },
+  id: false
 });
 
-// BONUS
-userSchema.pre("findOneAndDelete", { document: false, query: true }, async function() {
-    console.log("User pre-delete");
-    const doc = await this.model.findOne(this.getFilter());
-    console.log(doc.username);
-    await Thought.deleteMany({ username: doc.username });
+ThoughtSchema.virtual('reactionCount').get(function () {
+  return this.reactions.length;
 });
 
-const User = model('User', userSchema);
-module.exports = User;
+const Thought = model('Thought', ThoughtSchema);
+
+module.exports = Thought;
