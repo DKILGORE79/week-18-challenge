@@ -1,6 +1,8 @@
 # Social Network API
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)  ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) 	![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white) ![Insomnia](https://img.shields.io/badge/Insomnia-black?style=for-the-badge&logo=insomnia&logoColor=5849BE)
+ 
+ 
  ## Table of Contents:  
 [1. Description](#Description)  
 [2. Acceptance Criteria](#Acceptance-Criteria)  
@@ -36,7 +38,6 @@ This repo is not to be deployed, if you wanted to, you could by doing the follow
     - npm init -y
     - npm install express
     - npm install mongoose
-    - npm install moment
 ```
 4. Start the server
 ```
@@ -55,8 +56,8 @@ Testing restful API calls with Insomnia Core
     ```json
     // example data
     {
-        "username": "lernantino",
-        "email": "lernantino@gmail.com"
+        "username": "BrockSampson1968",
+        "email": "SecretAgent@gmail.com"
     }
     ```
 ---
@@ -76,7 +77,7 @@ Testing restful API calls with Insomnia Core
     // example data
     {
     "thoughtText": "Here's a cool thought...",
-    "username": "lernantino",
+    "username": "BrockSampson1968",
     "userId": "5edff358a0fcb779aa7b118b"
     }
     ```
@@ -94,7 +95,7 @@ Testing restful API calls with Insomnia Core
     // example data
     {
     "reactionBody":"Hell Yeah!!",
-    "username":"lernantino"
+    "username":"BrockSampson1968"
     }
     ```
 ---
@@ -110,3 +111,4 @@ Testing restful API calls with Insomnia Core
 
 ## Resources:
 https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
+https://www.codewithharry.com/blogpost/mongodb-cheatsheet/
