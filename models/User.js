@@ -28,14 +28,14 @@ const UserSchema = new Schema(
             }
         ]
     },
-    // we need to tell the schema that it can use virtuals.
-    // we'll need to tell the Mongoose model that it should use any getter function we've specified.
+    // I need to tell the schema that it can use virtuals.
+    // I need to tell the Mongoose model that it should use any getter function we've specified.
     {
     toJSON: {
         virtuals: true,
         getters: true
     },
-    // We set id to false because this is a virtual that Mongoose returns, and we don’t need it.
+    // I set id to false because this is a virtual that Mongoose returns, and we don’t need it.
     id: false
     }
 );

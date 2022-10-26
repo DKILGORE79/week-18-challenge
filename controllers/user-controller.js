@@ -99,8 +99,8 @@ const userController = {
     addFriend({ params }, res) {
         User.findOneAndUpdate(
           { _id: params.id },
-          // use $addToSet to block duplicates instead of $push
-          { $push: {friends: params.friendId } },
+          // use $addToSet to block duplicates instead of $push 
+          { $$addToSet: {friends: params.friendId } },
           { new: true }
         )
           .then(dbUserData => {
@@ -116,8 +116,7 @@ const userController = {
     removeFriend({ params }, res) {
         User.findOneAndUpdate(
             { _id: params.id },
-            // Here, we're using the MongoDB $pull operator to remove the specific friend from the friends 
-            // array where the friendId matches the value of params.friendId passed in from the route.
+
             { $pull:  {friends: params.friendId } },
             { new: true }
             )
